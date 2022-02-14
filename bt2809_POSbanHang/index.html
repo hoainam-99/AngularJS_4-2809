@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POS Ban Hang</title>
+    <!-- AngularJS -> framework (js) -> duoc viet bang js (library js) -> file .js -> nhung cdn vao web -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body ng-controller="myCtrl">
+    <div class="container">
+      <div class="content">
+        <div class="product" ng-repeat="product in productsList">
+          <img src="{{ product.img }}" alt="" />
+          <div class="product-info">
+            <p>{{ product.about }}</p>
+            <div class="price">
+              {{ product.price | currency : 'VNĐ ' : 0}}
+              <button ng-click="addProd($index)">Mua</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cart">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 110px;">Thumbnail</th>
+              <th style="width: 200px;">Title</th>
+              <th style="width: 50px;">Num</th>
+              <th style="width: 80px;">Price (VNĐ)</th>
+              <th style="width: 80px;">Total (VNĐ)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cart in cartList">
+              <td><img src="{{ cart.img }}" alt="" /></td>
+              <td>{{ cart.about }}</td>
+              <td><input type="number" ng-model="quantily"/></td>
+              <td>{{ cart.price }}</td>
+              <td>{{ cart.price*quantily }}</td>
+              <td><button ng-click="deleteBtn($index)">x</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script src="./assets/js/app.js"></script>
+</html>
